@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -9,7 +9,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import { useNavigate } from 'react-router-dom';
-import axios from '../../utils/axios';
+import FormHelperText from '@material-ui/core/FormHelperText';
+
+import authService from '../../services/authService';
 
 const useStyles = makeStyles((theme) =>({
   root: {
@@ -50,18 +52,18 @@ function Copyright() {
 function SigIn() {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState();
 
   async function handleSignIn(){
-    // chamada api
+    try {
+      await authService.signIn(email, password);
+      navigate('/')
+    } catch (error) {
+      setErrorMessage(error.response.data.message);
+    }
 
-    // se retornar ok, direciona para home
-
-    // se não exibe mensagem para o usuário
-
-    // axios.post('/api/home/login').then((response) => {console.log(response)})
-
-    const response = await axios.post('/api/home/login')
-    console.log(response)
   }
 
   return (
@@ -101,6 +103,8 @@ function SigIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
             <TextField
               variant="outlined"
@@ -112,6 +116,8 @@ function SigIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
             <Button
               fullWidth
@@ -122,7 +128,12 @@ function SigIn() {
             >
               Entrar
             </Button>
-
+            {
+              errorMessage &&
+              <FormHelperText error>
+                {errorMessage}
+              </FormHelperText>
+            }
             <Grid container>
               <Grid item>
                 <Link>Esqueceu sua senha?</Link>
