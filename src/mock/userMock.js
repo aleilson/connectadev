@@ -18,6 +18,7 @@ mock.onPost('/api/home/login').reply((config) => {
     'name': 'Ale Gomes',
     'username': 'alegomes',
     'email': 'alegomes@alegomes.com',
+    'avatar': './images/avatars/avatar_1.jpeg'
   }
   
   return [200, { user }]

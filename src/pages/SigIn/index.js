@@ -10,8 +10,9 @@ import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import { useNavigate } from 'react-router-dom';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import { useDispatch } from 'react-redux';
 
-import authService from '../../services/authService';
+import  signIn  from '../../actions/accountActions';
 
 const useStyles = makeStyles((theme) =>({
   root: {
@@ -41,7 +42,7 @@ function Copyright() {
   return (
     <Typography variant="body2" align="center">
       {'Copyright ©'}
-      <a color="inherit" href="https://github.com/aleilson">
+      <a color="inherit" href="https://github.com/aleilson"> 
         Aleilson Gomes
       </a>{' '}
       {new Date().getFullYear()}
@@ -55,15 +56,15 @@ function SigIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState();
+  const dispatch = useDispatch();
 
   async function handleSignIn(){
     try {
-      await authService.signIn(email, password);
+      await dispatch(signIn(email, password));
       navigate('/')
     } catch (error) {
       setErrorMessage(error.response.data.message);
     }
-
   }
 
   return (
