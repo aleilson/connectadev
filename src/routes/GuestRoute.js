@@ -1,15 +1,16 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import authService from '../services/authService'
 import Home from '../pages/Home';
 
 function GuestRoute({ element: Component, ...rest}) {
-  const isAutenticated = authService.isAuthenticated();
+  const account = useSelector(state => state.account);
+  const isAuthenticated = Boolean(account.user);
 
   return (
     <Route {...rest} element={(
-      isAutenticated
+      isAuthenticated
       ? <Home />
       : Component
     )} />
