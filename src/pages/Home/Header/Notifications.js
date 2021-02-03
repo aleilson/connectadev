@@ -20,7 +20,7 @@ import {
   Users as ConnectionIcon,
 } from 'react-feather';
 
-import { getNofications } from '../../../../actions/notificationsActions';
+import { getNofications } from '../../../actions/notificationsActions';
 
 const useStyles = makeStyles((theme) => ({
   icon: {

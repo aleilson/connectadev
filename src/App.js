@@ -19,9 +19,8 @@ function App() {
         <BrowserRouter>
           <Auth>
             <Routes>
-              <Route path="/" element={<Home />} />
               <GuestRoute path="/sign-in" element={<SigIn />} />
-              <Route path="*" element={<h1>NOT FOUND 404!</h1>} />
+              <Route path="//*" element={<Home />} />
             </Routes>
           </Auth>
         </BrowserRouter>

@@ -31,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
   image: {
     height: 300,
     width: '100%',
-    maxWidth: '100%'
+    maxWidth: '100%',
+    objectFit: 'cover'
   },
   content: {
     padding: '0px'

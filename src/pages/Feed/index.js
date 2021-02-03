@@ -1,8 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import PostCard from '../../../components/PostCard';
 
-const useStyles = makeStyles((theme) => ({
+import PostCard from '../../components/PostCard';
+import Navbar from './NavBar';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+
+const useStyles = makeStyles(() => ({
   root: {
 
   }
@@ -20,34 +24,40 @@ const posts = [
     date: 'January 28, 2021',
     description: 'Fala pessoal! Qual o framework favorito de vocês ?',
     hashtags: '#dotnet, #javascript, #reactjs, #developer',
-    image: '/images/posts/post8.png'
+    image: '/images/posts/post1.png'
   },
   { id: 2,
     author: {
       id: 1,
-      name: 'Lucas Nhimi',
-      username: 'lucasnhimi',
+      name: 'Ale Gomes',
+      username: 'alegomes',
       avatar: '/images/avatars/avatar_1.jpeg'
     },
-    title: 'Comparativo entre React.js e Vue.js - Performance',
+    title: 'React Hooks como utilizar na prática',
     date: 'January 21, 2021',
     description: 'Quero criar um bootcamp gratuito para passar um pouco da minha experiência pra vocês! Quem topa?',
     hashtags: '#framework, #javascript, #reactjs, #vue',
-    image: '/images/posts/post9.jpeg'
+    image: '/images/posts/post2.png'
   },
 ]
 
 function Feed() {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      {
-        posts.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))
-      }
-    </div>
-  )
+
+    <Container maxWidth="lg">
+      <Box display="flex">
+        <Navbar />
+        <div className={classes.root}>
+        {
+          posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))
+        }
+        </div>
+      </Box>
+    </Container>
+  );
 }
 
 export default Feed;
