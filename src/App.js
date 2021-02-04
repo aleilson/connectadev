@@ -5,7 +5,8 @@ import { Provider } from 'react-redux';
 
 import Auth from './components/Auth';
 import GuestRoute from './routes/GuestRoute';
-import SigIn from './pages/SigIn/index';
+import SignIn from './pages/SigIn/index';
+import SignUp from './pages/SignUp/index';
 import Home from './pages/Home/index';
 import theme from './theme/index';
 import store from './store'
@@ -19,7 +20,8 @@ function App() {
         <BrowserRouter>
           <Auth>
             <Routes>
-              <GuestRoute path="/sign-in" element={<SigIn />} />
+              <GuestRoute path="/sign-in" element={<SignIn />} />
+              <GuestRoute path="/sign-up" element={<SignUp />} />
               <Route path="//*" element={<Home />} />
             </Routes>
           </Auth>

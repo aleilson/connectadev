@@ -27,3 +27,17 @@ mock.onPost('/api/home/login').reply((config) => {
   
   return [200, { user }]
 });
+
+
+mock.onGet('/api/home/user/alegomes').reply(200, {
+ 
+  'id': 1,
+  'name': 'Ale Gomes',
+  'username': 'alegomes',
+  'email': 'alegomes@alegomes.com',
+  'accessToken': 'dadadadadada',
+  'avatar': './images/avatars/avatar_1.jpeg',
+  'joinedIn': '06 de janeiro, 2020',
+  'work': 'Desenvolvedor Front-end',
+  'totalPost': '388'
+});
