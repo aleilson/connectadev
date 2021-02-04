@@ -6,6 +6,9 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import {useDropzone} from 'react-dropzone';
 
+import { usePost } from '../../../../context/PostContext';
+import Title from './Title';
+
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -33,17 +36,18 @@ const arrayTags = [
   { title: 'javascript' },
 ];
 
-function PostEditor({
-  image, 
-  setImage, 
-  title, 
-  setTitle, 
-  tags, 
-  setTags, 
-  markdownText, 
-  setMarkdownText,
-}) {
+function PostEditor() {
   const classes = useStyles();
+  const ctx = usePost();
+
+  const { 
+    image,
+    setImage,
+    tags,
+    setTags,
+    markdownText,
+    setMarkdownText
+  } = ctx;
 
   const onDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0];
@@ -75,12 +79,7 @@ function PostEditor({
       )}
 
       <Box mb={2}>
-        <TextField 
-          id="title" 
-          placeholder="Título" 
-          fullWidth value={title} 
-          onChange={setTitle} 
-        />
+        <Title />
       </Box>
 
       <Box mb={2}>

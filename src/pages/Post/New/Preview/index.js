@@ -7,6 +7,8 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 
+import { usePost } from '../../../../context/PostContext';
+
 const useStyles = makeStyles((theme) => ({
  imagePreview: {
     width: '100%'
@@ -16,9 +18,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function PostPreview({ image, title, tags, markdownText }){
+function PostPreview(){
   const classes = useStyles();
   const account = useSelector(state => state.account);
+
+  const ctx = usePost();
+  const {  image, title, tags, markdownText } = ctx;
 
   return (
     <>
