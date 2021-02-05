@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Box from '@material-ui/core/Box';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import WritePost from './WritePost';
 import Notifications from './Notifications';
 import Account from './Account';
+import Settings from './Settings';
 
 const useStyles = makeStyles({
   appBar: {
@@ -28,18 +29,22 @@ const useStyles = makeStyles({
 
 function Header() {
   const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <AppBar position='fixed' color='inherit' className={classes.appBar}>
       <Toolbar>
         <Link to="/">
-          <img className={classes.img} src="/images/logo.png" alt="Connecta Dev"/>
+          <img className={classes.img} src={!theme.darkMode ? '/images/logo.png' : '/images/logo-branca.png' } alt="Connecta Dev"/>
         </Link>
         <div className={classes.grow} />
         <div className={classes.userSection}>
           <WritePost />
           <Box ml={2}>
             <Notifications />
+          </Box>
+          <Box ml={2}>
+            <Settings />
           </Box>
           <Box ml={2}>
             <Account />
